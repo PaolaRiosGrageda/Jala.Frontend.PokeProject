@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 function App() {
   const pokeApiDomain = `https://pokeapi.co/api/v2/pokemon/`;
@@ -54,11 +55,19 @@ function App() {
                </div>
 
                <div>
-                <label> abilities </label>
+                {
+                  pokemon.abilities.map(item =>(
+                    <div key={uuidv4()}>
+                      <br/>
+                      <label> {item.ability.name}</label>
+                      </div>
+                  ))
+                }
+                {/* <label> abilities </label>
                 <br/>
                 <label>{pokemon.abilities[0].ability.name}</label>
                 <br/>
-                <label>{pokemon.abilities[1].ability.name}</label>
+                <label>{pokemon.abilities[1].ability.name}</label> */}
               </div>
             </div>
           )
