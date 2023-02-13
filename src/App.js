@@ -21,9 +21,14 @@ function App() {
       })
       //.catch(err => console.error(err));
   }, [currentId]);
+ 
   const getPokemon = (id) => {
     setCurrentId(id);
   };
+  // const getDamageFrom= (url) => {
+
+  // };
+ 
   return (
     <div className="App">
       <header className="App-header">
@@ -63,11 +68,17 @@ function App() {
                       </div>
                   ))
                 }
-                {/* <label> abilities </label>
-                <br/>
-                <label>{pokemon.abilities[0].ability.name}</label>
-                <br/>
-                <label>{pokemon.abilities[1].ability.name}</label> */}
+                
+              </div>
+              <div>
+                {
+                    // To Ask. El codigo abajo genera error con F5 
+                    pokemon.stats.map(item =>(
+                      <div  key={uuidv4()} >
+                        <label>{item.stat.name} => {item.base_stat}/200</label>
+                      </div>
+                    ))
+                }
               </div>
             </div>
           )
