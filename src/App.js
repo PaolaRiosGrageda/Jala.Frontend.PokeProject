@@ -1,43 +1,70 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const pokeApiDomain= `https://pokeapi.co/api/v2/pokemon/`;
-  const [currentId, setCurrentId]= useState(1);
-  const [pokemon, setPokemon]= useState({});
+  const pokeApiDomain = `https://pokeapi.co/api/v2/pokemon/`;
+  const [currentId, setCurrentId] = useState(1);
+  const [pokemon, setPokemon] = useState({sprites:{}, weight:0, abilities: []});
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
+    setIsLoading(true);
     fetch(`${pokeApiDomain}${currentId}`)
-    .then((response)=>response.json())
-    .then(pokemonData=>{
-      console.log(pokemonData);
-      setCurrentId(pokemonData.id);
-      setPokemon(pokemonData);
-    })
-  },[currentId]);
-  const getPokemon=(id)=>{
+      .then(response => response.json())
+      .then(pokemonData => {
+        console.log(pokemonData);
+        setCurrentId(pokemonData.id);
+        setPokemon(pokemonData);
+        setIsLoading(false);
+      })
+      //.catch(err => console.error(err));
+  }, [currentId]);
+  const getPokemon = (id) => {
     setCurrentId(id);
   };
   return (
     <div className="App">
       <header className="App-header">
-       {/* Head container */}
-        <div>
-          <label>{pokemon.name}</label>        
-        </div>
-        {/* Screen container*/} 
-        <div>
-          <img src={pokemon.sprites.front_default} className="App-logo" alt="logo" />
-        </div>
-        <div>
-          {/* Info container */}
-        </div>
-        <div>
-          <button onClick ={()=> getPokemon(currentId+1)}>next</button>
-        </div>
-      </header>
-    </div>
+        {
+          isLoading ? (
+            <></>
+          ) : (
+            <div>
+              {/* Head container */ }
+              <div>
+                <label>{pokemon.name}</label>        
+              </div>
+              
+              {/* Screen container*/ } 
+              <div>
+                <img src={pokemon.sprites.front_default} className="App-logo" alt="logo" />
+              </div>
+
+              {/* Info container */}
+              <div>
+                 <button onClick ={()=> getPokemon(currentId-1)}>Previous</button>
+                 <button onClick ={()=> getPokemon(currentId+1)}>Next</button>
+               </div>
+
+               <div>
+                 <label>Weight</label>
+                 <br/>
+                 <label> {pokemon.weight}</label>
+               </div>
+
+               <div>
+                <label> abilities </label>
+                <br/>
+                <label>{pokemon.abilities[0].ability.name}</label>
+                <br/>
+                <label>{pokemon.abilities[1].ability.name}</label>
+              </div>
+            </div>
+          )
+        }
+      </header >
+    </div >
   );
 }
 
