@@ -8,6 +8,12 @@ function App() {
   const [currentId, setCurrentId] = useState(1);
   const [pokemon, setPokemon] = useState({sprites:{}, weight:0, abilities: []});
   const [isLoading, setIsLoading] = useState(false);
+  const [types, setTypes] = useState([]);
+
+  const getType= () => {
+    setTypes(pokemon.types.map(item => item.type.name));
+   };
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,6 +23,7 @@ function App() {
         console.log(pokemonData);
         setCurrentId(pokemonData.id);
         setPokemon(pokemonData);
+        getType();
         setIsLoading(false);
       })
       //.catch(err => console.error(err));
@@ -25,9 +32,7 @@ function App() {
   const getPokemon = (id) => {
     setCurrentId(id);
   };
-  // const getDamageFrom= (url) => {
-
-  // };
+   
  
   return (
     <div className="App">
@@ -71,15 +76,36 @@ function App() {
                 
               </div>
               <div>
-                {
-                    // To Ask. El codigo abajo genera error con F5 
-                    pokemon.stats.map(item =>(
-                      <div  key={uuidv4()} >
-                        <label>{item.stat.name} => {item.base_stat}/200</label>
+                <h1>Stats</h1>
+                <div>
+                  {
+                      // To Ask. El codigo abajo genera error con F5 
+                      pokemon.stats.map(item =>(
+                        <div  key={uuidv4()} >
+                          <label>{item.stat.name} => {item.base_stat}/200</label>
+                        </div>
+                      ))
+                  }
+                </div>
+              </div>
+              
+              <div>
+                <h1>Types</h1>
+                <div>
+                  {
+                    types.map(item => (
+                      <div>
+                        <div className="type">
+                          {item}
+                        </div>
                       </div>
                     ))
-                }
+                  }
+                </div>
               </div>
+
+              
+
             </div>
           )
         }
