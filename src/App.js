@@ -9,24 +9,21 @@ function App() {
   const [pokemon, setPokemon] = useState({sprites:{}, weight:0, abilities: []});
   const [isLoading, setIsLoading] = useState(false);
   const [types, setTypes] = useState([]);
+  
   const [damageDouble, setDamageDouble] = useState([]);
   const [damageHalf, setDamageHalf] = useState([]);
-  
-
-  // const [damageTo, setDamageTo] = useState([]);
-  // const [weaknesses, setWeaknesses] = useState([]);
 
   const getType= () => {
     setTypes(pokemon.types.map(item => item.type.name));
    };
    
   const getDamageInformation= () => {
-    // let damageFromDouble=[];
-    // let damageFromHalf=[];
-    setDamageDouble([]);
-    console.log(damageDouble.length);
-    setDamageHalf([]);
     getType();
+    setDamageDouble([]);
+    setDamageHalf([]);
+
+    console.log("Before fetch refresh");
+    console.log(damageDouble);
 
     const typeUrls = pokemon.types.map(item=> item.type.url);
     typeUrls.forEach(typeUrl => {
@@ -34,43 +31,32 @@ function App() {
       .then(response => response.json())
       .then(typeData => {
         
-        // setDamage([damage, ...typeData.damage_relations.double_damage_from
-        //                      .map(x => x.name)]);
-        // typeData.damage_relations.double_damage_from
-        //                      .forEach(damage => {
-        //                         damage.push(damage.name);
-        //                         console.log(damage);
-        //                      });
-        
         let damageFromDouble = typeData.damage_relations.double_damage_from
                             .map(x => x.name); 
                             
         let damageFromHalf = typeData.damage_relations.half_damage_from
                             .map(x => x.name);
 
-        setDamageDouble([...damageFromDouble]);
-        setDamageHalf([...damageFromHalf]);
-        // console.log(damageFromDouble);
+        // setDamageDouble([...damageFromDouble]);
+        // setDamageHalf([...damageHalf, ...damageFromHalf]);
         
+        damageFromDouble.forEach(x => damageDouble.push(x));
+        damageFromHalf.forEach(x => damageHalf.push(x));
 
-        // console.log (damageFromDouble[0], damageFromHalf[0]+"hollaaaaa");
-
-        //setDamageFrom([damageFrom, ...damageFromTmp]);
-        // setDamageTo([damageTo, ...damageToTmp]);  
-        // const result = FilterWeaknesses(damage)                         
+         console.log("Internal review")
+         console.log(damageDouble);
+        // console.log(damageDouble);
+        // console.log(damageD);
+        // setDamageDouble(...damageDouble);
       })
     });
 
-    // console.log(damage);
+    console.log("After fetch")
+    console.log(damageDouble);
     
-    // let damageFromSet = [...new Set(damageFrom)];
-    // let damageToSet = [...new Set(damageTo)];
-    
-    // //Remove Pokemon types from Damage
-    // setDamageFrom(damageFromSet.filter(x => !types.includes(x)));
+    // setDamageDouble(damageHalf.filter(x => !types.includes(x)));
+    // setDamageHalf(damageDouble.filter(x => !types.includes(x)));
   };
-
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -134,16 +120,7 @@ function App() {
               </div>
               <div>
                 <h1>Stats</h1>
-                <div>
-                  {
-                      // To Ask. El codigo abajo genera error con F5 
-                      pokemon.stats.map(item =>(
-                        <div  key={uuidv4()} >
-                          <label>{item.stat.name} {item.base_stat}/200</label>
-                        </div>
-                      ))
-                  }
-                </div>
+                
               </div>
               
               <div>
@@ -170,21 +147,9 @@ function App() {
                       {item }
                     </div>
                   ))
-                  
-                 }
-                 {
-                  damageHalf.map(item => (
-                    <div>
-                      {item }
-                    </div>
-                  ))
-
                  }
                 </div>
               </div>
-                  
-              
-
             </div>
           )
         }
