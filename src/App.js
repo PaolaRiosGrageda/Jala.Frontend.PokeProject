@@ -9,10 +9,67 @@ function App() {
   const [pokemon, setPokemon] = useState({sprites:{}, weight:0, abilities: []});
   const [isLoading, setIsLoading] = useState(false);
   const [types, setTypes] = useState([]);
+  const [damageDouble, setDamageDouble] = useState([]);
+  const [damageHalf, setDamageHalf] = useState([]);
+  
+
+  // const [damageTo, setDamageTo] = useState([]);
+  // const [weaknesses, setWeaknesses] = useState([]);
 
   const getType= () => {
     setTypes(pokemon.types.map(item => item.type.name));
    };
+   
+  const getDamageInformation= () => {
+    // let damageFromDouble=[];
+    // let damageFromHalf=[];
+    setDamageDouble([]);
+    console.log(damageDouble.length);
+    setDamageHalf([]);
+    getType();
+
+    const typeUrls = pokemon.types.map(item=> item.type.url);
+    typeUrls.forEach(typeUrl => {
+      fetch(typeUrl)
+      .then(response => response.json())
+      .then(typeData => {
+        
+        // setDamage([damage, ...typeData.damage_relations.double_damage_from
+        //                      .map(x => x.name)]);
+        // typeData.damage_relations.double_damage_from
+        //                      .forEach(damage => {
+        //                         damage.push(damage.name);
+        //                         console.log(damage);
+        //                      });
+        
+        let damageFromDouble = typeData.damage_relations.double_damage_from
+                            .map(x => x.name); 
+                            
+        let damageFromHalf = typeData.damage_relations.half_damage_from
+                            .map(x => x.name);
+
+        setDamageDouble([...damageFromDouble]);
+        setDamageHalf([...damageFromHalf]);
+        // console.log(damageFromDouble);
+        
+
+        // console.log (damageFromDouble[0], damageFromHalf[0]+"hollaaaaa");
+
+        //setDamageFrom([damageFrom, ...damageFromTmp]);
+        // setDamageTo([damageTo, ...damageToTmp]);  
+        // const result = FilterWeaknesses(damage)                         
+      })
+    });
+
+    // console.log(damage);
+    
+    // let damageFromSet = [...new Set(damageFrom)];
+    // let damageToSet = [...new Set(damageTo)];
+    
+    // //Remove Pokemon types from Damage
+    // setDamageFrom(damageFromSet.filter(x => !types.includes(x)));
+  };
+
 
 
   useEffect(() => {
@@ -20,10 +77,10 @@ function App() {
     fetch(`${pokeApiDomain}${currentId}`)
       .then(response => response.json())
       .then(pokemonData => {
-        console.log(pokemonData);
+        // console.log(pokemonData);
         setCurrentId(pokemonData.id);
         setPokemon(pokemonData);
-        getType();
+        getDamageInformation();
         setIsLoading(false);
       })
       //.catch(err => console.error(err));
@@ -54,7 +111,7 @@ function App() {
 
               {/* Info container */}
               <div>
-                 <button onClick ={()=> getPokemon(currentId-1)}>Previous</button>
+                 <button onClick ={()=> getPokemon(currentId>1? currentId-1 : currentId)}>Previous</button>
                  <button onClick ={()=> getPokemon(currentId+1)}>Next</button>
                </div>
 
@@ -82,7 +139,7 @@ function App() {
                       // To Ask. El codigo abajo genera error con F5 
                       pokemon.stats.map(item =>(
                         <div  key={uuidv4()} >
-                          <label>{item.stat.name} => {item.base_stat}/200</label>
+                          <label>{item.stat.name} {item.base_stat}/200</label>
                         </div>
                       ))
                   }
@@ -103,7 +160,29 @@ function App() {
                   }
                 </div>
               </div>
+              <div>
+                <h1>Weaknessess</h1>
+                <div>
+                 {/* Aqui code weaks */}
+                 {
+                  damageDouble.map(item => (
+                    <div>
+                      {item }
+                    </div>
+                  ))
+                  
+                 }
+                 {
+                  damageHalf.map(item => (
+                    <div>
+                      {item }
+                    </div>
+                  ))
 
+                 }
+                </div>
+              </div>
+                  
               
 
             </div>
