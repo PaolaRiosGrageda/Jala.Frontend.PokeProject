@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
 
-export default function MediaCard({image,name,id,logo, pokemonTypes}) {
+export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeight}) {
   
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
@@ -47,10 +47,10 @@ export default function MediaCard({image,name,id,logo, pokemonTypes}) {
           Info
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          Peso , altura
+          Weight: {pokemonWeight}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          Types
+          Weaknessess
         </Typography>
       </CardContent>
       

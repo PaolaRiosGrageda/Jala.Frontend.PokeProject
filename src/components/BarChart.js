@@ -1,11 +1,24 @@
 import React from 'react';
 
+import Chart from 'chart.js/auto';
 
 
 
 const BarChart = () => {
+  
+      
     return (
-        <div>Bar Chart</div>
+    <div>
+        <div>
+         <canvas id="myChart"></canvas>
+        </div>
+        <script>
+            const ctx = document.getElementById('myChart');
+            
+        </script>
+       
+    </div>
+       
     )
 }
 

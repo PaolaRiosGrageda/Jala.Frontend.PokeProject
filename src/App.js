@@ -78,7 +78,7 @@ function App() {
   }, [currentId]);
  
   const getPokemon = (id) => {
-    let currentId= id > 151 ? 1 : id < 1 ? 151 : id;
+    let currentId= id > 150 ? 1 : id < 1 ? 150 : id;
     setCurrentId(id);
   };
    
@@ -106,9 +106,9 @@ function App() {
                 <button onClick = {()=> getPokemon(currentId-1)}>{'<'}</button>
               </div>
               <div>
-                <MediaCard  image={pokemon.sprites.other['official-artwork'].front_default} logo ={pokemon.sprites.front_default} name={pokemon.name} pokemonTypes={types}></MediaCard>
-                <label> Weight</label>
-                <label>{pokemon.weight}</label>
+                <MediaCard  image={pokemon.sprites.other['official-artwork'].front_default} logo ={pokemon.sprites.front_default} name={pokemon.name} pokemonTypes={types} pokemonWeight={pokemon.weight}></MediaCard>
+                {/* <label> Weight</label>
+                <label>{pokemon.weight}</label> */}
                
               </div>
               <div style={{marginLeft:'-23px', zIndex:1, display:'flex', alignItems:'center'}}>
@@ -129,24 +129,14 @@ function App() {
                 }
                
                 </div>
-              <div>
+                <div>
                 <h1>Stats</h1>
                 
               </div>
               
               <div>
                 {/* <h1>Types</h1> */}
-                <div>
-                  {
-                    types.map(item => (
-                      <div>
-                        <div className="type">
-                          {item}
-                        </div>
-                      </div>
-                    ))
-                  }
-                </div>
+                
               </div>
               <div>
                 <h1>Weaknessess</h1>
