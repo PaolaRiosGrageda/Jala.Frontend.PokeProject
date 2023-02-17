@@ -4,13 +4,16 @@ import { useState, useEffect } from 'react';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography} from '@mui/material';
 import {v4 as uuidv4} from 'uuid';
 import MediaCard from './components/CustomCards';
+import BarChart from './components/BarChart';
+
+
 function App() {
   const pokeApiDomain = `https://pokeapi.co/api/v2/pokemon/`;
   const [currentId, setCurrentId] = useState(1);
-  const [pokemon, setPokemon] = useState({sprites:{}, weight:0, abilities: []});
+  //const [pokemon, setPokemon] = useState({sprites:{}, weight:0, abilities: []});
+  const [pokemon, setPokemon] = useState({sprites:{other:{"official-artwork":{}}}, weight:0, abilities:[]});
   const [isLoading, setIsLoading] = useState(false);
   const [types, setTypes] = useState([]);
-  
   const [damageDouble, setDamageDouble] = useState([]);
   const [damageHalf, setDamageHalf] = useState([]);
 
@@ -67,6 +70,7 @@ function App() {
         // console.log(pokemonData);
         setCurrentId(pokemonData.id);
         setPokemon(pokemonData);
+        getType();
        // getDamageInformation();
         setIsLoading(false);
       })
@@ -102,30 +106,18 @@ function App() {
                 <button onClick = {()=> getPokemon(currentId-1)}>{'<'}</button>
               </div>
               <div>
-                <MediaCard  image={pokemon.sprites.front_default} name={pokemon.name}></MediaCard>
-                {/* image={pokemon.sprites.other['official-artwork'].front_default} logo ={pokemon.sprites.front_default} */}
+                <MediaCard  image={pokemon.sprites.other['official-artwork'].front_default} logo ={pokemon.sprites.front_default} name={pokemon.name} pokemonTypes={types}></MediaCard>
+                <label> Weight</label>
+                <label>{pokemon.weight}</label>
+               
               </div>
               <div style={{marginLeft:'-23px', zIndex:1, display:'flex', alignItems:'center'}}>
                 <button onClick={()=> getPokemon(currentId +1)}>{'>'}</button>
-              </div>
-                       
+              </div>        
             </div> 
-              
-              {/* Screen container*/ } 
-             
-
-              {/* Info container */}
-              {/* <div>
-                 <button onClick ={()=> getPokemon(currentId>1? currentId-1 : currentId)}>Previous</button>
-                 <button onClick ={()=> getPokemon(currentId+1)}>Next</button>
-               </div> */}
-
-               <div>
-                 <label>Weight</label>
-                 <br/>
-                 <label> {pokemon.weight}</label>
-               </div>
-
+            <div>
+            
+            </div>
                <div>
                 {
                   pokemon.abilities.map(item =>(
@@ -135,7 +127,7 @@ function App() {
                       </div>
                   ))
                 }
-                
+               
                 </div>
               <div>
                 <h1>Stats</h1>
@@ -143,7 +135,7 @@ function App() {
               </div>
               
               <div>
-                <h1>Types</h1>
+                {/* <h1>Types</h1> */}
                 <div>
                   {
                     types.map(item => (
