@@ -15,6 +15,7 @@ const BarChart = () => {
         <script>
             const ctx = document.getElementById('myChart');
             
+
         </script>
        
     </div>
