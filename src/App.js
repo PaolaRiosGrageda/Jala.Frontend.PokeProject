@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography} from '@mui/material';
-import {v4 as uuidv4} from 'uuid';
 import MediaCard from './components/CustomCards';
 
 
@@ -116,36 +115,15 @@ function App() {
                             logo ={pokemon.sprites.front_default} 
                             name={pokemon.name} 
                             pokemonTypes={types} 
-                            pokemonWeight={pokemon.weight}></MediaCard>
+                            pokemonWeight={pokemon.weight}
+                            pokemonInfo= {pokemon} >
+                </MediaCard>
               </div>
               <div style={{marginLeft:'-23px', zIndex:1, display:'flex', alignItems:'center'}}>
                 <button onClick={()=> getPokemon(currentId +1)}>{'>'}</button>
               </div>        
             </div> 
-              <div>
-                {
-                  pokemon.abilities.map(item =>(
-                    <div key={uuidv4()}>
-                      <br/>
-                      <label> {item.ability.name}</label>
-                      </div>
-                  ))
-                }
-               
-                </div>
-                <div>
-                  <h1>Stats</h1>
-                
-                </div>
               
-              <div>
-                {/* <h1>Types</h1> */}
-                
-              </div>
-              <div>
-                <h1>Weaknessess</h1>
-                
-              </div>
             </div>
           )
         }

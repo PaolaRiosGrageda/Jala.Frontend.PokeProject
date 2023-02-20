@@ -1,10 +1,10 @@
 import * as React from 'react';
 import BarChart from './BarChart';
 import { useState, useEffect } from 'react';
-
+import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
 
-export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeight}) {
+export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeight,pokemonInfo}) {
   
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
@@ -51,6 +51,10 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
           Weaknessess
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+          Abilities
+          <Abilities pokemonInfo={pokemonInfo} />
         </Typography>
       </CardContent>
       
