@@ -4,15 +4,30 @@ import { useState, useEffect } from 'react';
 import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
 
-export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeight,pokemonInfo}) {
+export default function MediaCard({pokemonInfo}) {
+  
+  const getImage=(info)=>{
+    return info.sprites.other['official-artwork'].front_default
+  };
+
+  const getLogo=(info)=>{
+    return info.sprites.front_default;
+  };
+
+  const getTypes= (info) => {
+    if (info!=null && info.types!=null)
+      return info.types.map(item => item.type.name);
+    return [];
+  };
+
+
   const getStatsInfo = (pokemonInfo1)=>{
-   
     let label1 = [];
     let stats1 = [];
-    pokemonInfo1.stats.forEach(element => {
-      label1.push(element.stat.name);
-      stats1.push(element.base_stat);
-    });
+    // pokemonInfo1.stats.forEach(element => {
+    //   label1.push(element.stat.name);
+    //   stats1.push(element.base_stat);
+    // });
     return [label1, stats1];
 
   }
@@ -21,12 +36,14 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
       <CardHeader
         avatar={
-          <Avatar sx={{bgcolor: 'white', boxShadow:5, padding:'5px', margin: '2px'}} aria-label="recipe " src={logo}>
+          <Avatar sx={{bgcolor: 'white', boxShadow:5, padding:'5px', margin: '2px'}} 
+                  aria-label="recipe " 
+                  src={getLogo(pokemonInfo)}>
           </Avatar>
         }
         titleTypographyProps= {{variant:'h4', align:'center'}}
-        title={name}
-        subheader={pokemonTypes.map(item =>(
+        title={pokemonInfo.name}
+        subheader={getTypes(pokemonInfo).map(item =>(
               <div>
                 <div className="type">
                   {item}
@@ -44,7 +61,7 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
           backgroundColor: 'skyblue',
           width: "auto" 
         }}
-        image={image}
+        image={getImage(pokemonInfo)}
         
       /> 
       <CardContent>
@@ -58,7 +75,7 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
           Info
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          WEIGHT: {pokemonWeight}
+          WEIGHT: {pokemonInfo.weight}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
           Weaknessess
