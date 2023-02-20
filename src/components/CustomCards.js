@@ -41,7 +41,7 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
           Stats
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        <BarChart/>
+        {/* <BarChart/> */}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
           Info
