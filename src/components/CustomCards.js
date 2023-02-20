@@ -5,7 +5,18 @@ import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
 
 export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeight,pokemonInfo}) {
-  
+  const getStatsInfo = (pokemonInfo1)=>{
+   
+    let label1 = [];
+    let stats1 = [];
+    pokemonInfo1.stats.forEach(element => {
+      label1.push(element.stat.name);
+      stats1.push(element.base_stat);
+    });
+    return [label1, stats1];
+
+  }
+   
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
       <CardHeader
@@ -39,7 +50,7 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Stats
-          <BarChart/>
+           <BarChart inputData={getStatsInfo(pokemonInfo)}/>
         </Typography>
         <Typography variant="body2" color="text.secondary">
         </Typography>
@@ -47,13 +58,13 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
           Info
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          Weight: {pokemonWeight}
+          WEIGHT: {pokemonWeight}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
           Weaknessess
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          Abilities
+          ABILITIES:
           <Abilities pokemonInfo={pokemonInfo} />
         </Typography>
       </CardContent>
