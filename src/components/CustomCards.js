@@ -3,6 +3,7 @@ import {BarChart} from './BarChart';
 import { useState, useEffect } from 'react';
 import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
+import { Types } from './Types';
 
 export default function MediaCard({pokemonInfo}) {
   
@@ -43,14 +44,9 @@ export default function MediaCard({pokemonInfo}) {
         }
         titleTypographyProps= {{variant:'h4', align:'center'}}
         title={pokemonInfo.name}
-        subheader={getTypes(pokemonInfo).map(item =>(
-              <div>
-                <div className="type">
-                  {item}
-                </div>
-              </div>
-              ))}
-        
+        subheader= {
+          <Types info = {getTypes(pokemonInfo)}/>
+        }
       />
       <CardMedia
         sx={{

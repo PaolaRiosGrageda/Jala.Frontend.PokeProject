@@ -1,0 +1,12 @@
+.TypesContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.TypeChild{
+    margin: 5px;
+    background-color:bisque;
+    border-radius: 3px;
+    padding: 5px;
+}
