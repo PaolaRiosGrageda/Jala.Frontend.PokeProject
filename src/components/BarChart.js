@@ -1,64 +1,34 @@
 import React from 'react';
 
 import {Bar} from 'react-chartjs-2';
+import {Chart as ChartJS} from 'chart.js/auto'
 
-
-
-const BarChart = ({data}) => {
-    data = [
-        {
-          id: 1,
-          year: 2016,
-          userGain: 80000,
-          userLost: 823
-        },
-        {
-          id: 2,
-          year: 2017,
-          userGain: 45677,
-          userLost: 345
-        },
-        {
-          id: 3,
-          year: 2018,
-          userGain: 78888,
-          userLost: 555
-        },
-        {
-          id: 4,
-          year: 2019,
-          userGain: 90000,
-          userLost: 4555
-        },
-        {
-          id: 5,
-          year: 2020,
-          userGain: 4300,
-          userLost: 234
-        }
-      ];
+export const BarChart = ({dataChart}) => {
+    const labels = ["aa","bb","cc","dd","ee","ff","gg"];
+    const data = {
+    labels: labels,
+    datasets: [{
+        data: [65, 59, 80, 81, 56, 55, 40],
+        backgroundColor: [
+            'rgba(255, 99, 132)',
+            'rgba(255, 159, 64)',
+            'rgba(255, 205, 86)',
+            'rgba(75, 192, 192)',
+            'rgba(54, 162, 235)',
+            'rgba(153, 102, 255)',
+            'rgba(201, 203, 207)'
+        ]
+    }]
+    };
       
     return (
-    <div className="chart-container">
-        <h2 style ={{textAlign: 'center'}}> Pokemon Stats </h2>
-        <Bar
-            data ={data}
-            options={{
-                plugins:{
-                    title:{
-                        display:true,
-                        text:"Pkemon data"
-                    },
-                    legend:{
-                        display:false
-                    }
-                }
-            }}
-        />
-       
-    </div>
-       
+        <div className="chart-container">
+            <h2 style ={{textAlign: 'center'}}> Pokemon Stats </h2>
+            <div backgroundColor="black">
+                <Bar
+                    data={data}
+                />  
+            </div> 
+        </div>   
     )
 }
-
-export default BarChart;

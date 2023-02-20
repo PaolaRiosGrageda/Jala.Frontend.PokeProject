@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BarChart from './BarChart';
+import {BarChart} from './BarChart';
 import { useState, useEffect } from 'react';
 import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
@@ -39,9 +39,9 @@ export default function MediaCard({image,name,id,logo, pokemonTypes, pokemonWeig
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Stats
+          <BarChart/>
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {/* <BarChart/> */}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
           Info
