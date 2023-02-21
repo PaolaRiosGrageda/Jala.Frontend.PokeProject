@@ -11,16 +11,14 @@ function App() {
   const [pokemon, setPokemon] = useState({sprites:{other:{"official-artwork":{}}}, weight:0, abilities:[]});
   const [isLoading, setIsLoading] = useState(false);
   const [weaknes, setweaknes] = useState([]);
-  const [types, setTypes] = useState([]);
-  const [damageDouble, setDamageDouble] = useState([]);
-  const [damageHalf, setDamageHalf] = useState([]);
+  const [statsInfo, setStatsInfo] = useState([]);
 
   const getPokemon = (id) => {
     id= id > 150 ? 1 : id < 1 ? 150 : id;
     setCurrentId(id);
   };
 
-   async function setPokemonDamage1 (info) {
+  async function setPokemonDamage1 (info) {
     setweaknes([]);
     let typeUrls= info.types.map(item =>item.type.url);
     let results = [];
@@ -49,7 +47,20 @@ function App() {
   const getPokemonDamage = (info) => {
     return setPokemonDamage1(info);
   }
-   
+  
+  const setStatsInformation = (pokemonInfo1)=>{
+    let label1 = [];
+    let stats1 = [];
+
+    console.log(pokemonInfo1);
+    pokemonInfo1.stats.forEach(element => {
+      label1.push(element.stat.name);
+      stats1.push(element.base_stat);
+    });
+    
+    setStatsInfo({labels: label1, stats: stats1});
+  }
+
   useEffect(() => {
     setIsLoading(true);
     getPokemon(currentId);
@@ -59,6 +70,7 @@ function App() {
         setCurrentId(pokemonData.id);
         setPokemon(pokemonData);
         getPokemonDamage(pokemonData);
+        setStatsInformation(pokemonData);
         setIsLoading(false);
       })
       .catch(err => console.error(err));
@@ -88,7 +100,7 @@ function App() {
                 <button onClick = {()=> getPokemon(currentId-1)}>{'<'}</button>
               </div>
               <div>
-                <MediaCard  pokemonInfo= {pokemon} weaknessess={weaknes}/>
+                <MediaCard  pokemonInfo= {pokemon} weaknessess={weaknes} statsInfo={statsInfo}/>
               </div>
               <div style={{marginLeft:'-23px', zIndex:1, display:'flex', alignItems:'center'}}>
                 <button onClick={()=> getPokemon(currentId + 1)}>{'>'}</button>

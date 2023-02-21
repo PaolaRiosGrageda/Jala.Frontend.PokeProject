@@ -6,7 +6,7 @@ import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, 
 import { Types } from './Types';
 import { Weaknessess } from './Weaknessess';
 
-export default function MediaCard({pokemonInfo, weaknessess}) {
+export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
   
   // console.log(pokemonInfo);
   // const [weaknes, setweaknes] = useState([]);
@@ -24,16 +24,18 @@ export default function MediaCard({pokemonInfo, weaknessess}) {
     return [];
   };
 
-  const getStatsInfo = (pokemonInfo1)=>{
-    let label1 = [];
-    let stats1 = [];
-    // pokemonInfo1.stats.forEach(element => {
-    //   label1.push(element.stat.name);
-    //   stats1.push(element.base_stat);
-    // });
-    return [label1, stats1];
+  // const getStatsInfo = (pokemonInfo1)=>{
+  //   let label1 = [];
+  //   let stats1 = [];
 
-  }
+  //   // console.log(pokemonInfo1);
+  //   // pokemonInfo1.stats.forEach(element => {
+  //   //   label1.push(element.stat.name);
+  //   //   stats1.push(element.base_stat);
+  //   // });
+  //   return [label1, stats1];
+
+  // }
  
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
@@ -64,7 +66,7 @@ export default function MediaCard({pokemonInfo, weaknessess}) {
       /> 
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-           <BarChart inputData={getStatsInfo(pokemonInfo)}/>
+           <BarChart inputData={statsInfo}/>
         </Typography>
         <Typography variant="body2" color="text.secondary">
         </Typography>

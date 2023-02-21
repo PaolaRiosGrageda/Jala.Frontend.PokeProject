@@ -1,17 +1,15 @@
 import React from 'react';
-
 import {Bar} from 'react-chartjs-2';
+
+// Sin la siguiente lincea no funcionan los charts
 import {Chart as ChartJS} from 'chart.js/auto'
 
 export const BarChart = ({inputData}) => {
-    //const labels = ["aa","bb","cc","dd","ee","ff","gg"];
-    //const labels = dataChart.labels;
     const data = {
-    labels:inputData[0],
+    labels:inputData.labels,
     datasets: [{
         label: 'Stats',
-        // data: [65, 59, 80, 81, 56, 55, 40],
-        data: inputData[1],
+        data: inputData.stats,
         backgroundColor: [
             'rgba(255, 99, 132)',
             'rgba(255, 159, 64)',
@@ -20,8 +18,9 @@ export const BarChart = ({inputData}) => {
             'rgba(54, 162, 235)',
             'rgba(153, 102, 255)',
             'rgba(153, 102, 255)'
-        ]
-    }]
+        ], 
+    }],
+    
     };
       
     return (
