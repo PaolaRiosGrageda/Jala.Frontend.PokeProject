@@ -26,7 +26,7 @@ export const BarChart = ({inputData}) => {
       
     return (
         <div className="chart-container">
-            <h2 style ={{textAlign: 'center'}}> Pokemon Stats </h2>
+            <h3 style ={{textAlign: 'center'}}> Pokemon Stats </h3>
             <div backgroundColor="black">
                 <Bar
                     data={data}

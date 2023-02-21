@@ -10,51 +10,46 @@ function App() {
   const [currentId, setCurrentId] = useState(1);
   const [pokemon, setPokemon] = useState({sprites:{other:{"official-artwork":{}}}, weight:0, abilities:[]});
   const [isLoading, setIsLoading] = useState(false);
+  const [weaknes, setweaknes] = useState([]);
   const [types, setTypes] = useState([]);
   const [damageDouble, setDamageDouble] = useState([]);
   const [damageHalf, setDamageHalf] = useState([]);
 
   const getPokemon = (id) => {
-
     id= id > 150 ? 1 : id < 1 ? 150 : id;
     setCurrentId(id);
   };
 
-  
-   
-  // const getDamageInformation= () => {
-  //   getType();
-  //   setDamageDouble([]);
-  //   setDamageHalf([]);
-  //   console.log("Before fetch refresh");
-  //   console.log(damageDouble);
-  //   const typeUrls = pokemon.types.map(item=> item.type.url);
-  //   typeUrls.forEach(typeUrl => {
-  //     fetch(typeUrl)
-  //     .then(response => response.json())
-  //     .then(typeData => {
-  //       let damageFromDouble = typeData.damage_relations.double_damage_from
-  //                           .map(x => x.name); 
-                            
-  //       let damageFromHalf = typeData.damage_relations.half_damage_from
-  //                           .map(x => x.name);
+   async function setPokemonDamage1 (info) {
+    setweaknes([]);
+    let typeUrls= info.types.map(item =>item.type.url);
+    let results = [];
+    
+    await Promise.all(typeUrls.map(async (typeUrl) => {
+      await fetch(typeUrl)
+      .then(response => response.json())
+      .then(data => {
+        let damageFromDouble = data.damage_relations.double_damage_from
+                              .map(x=>x.name);
+        results.push(damageFromDouble);
+      })
+    }));
 
-  //       // setDamageDouble([...damageFromDouble]);
-  //       // setDamageHalf([...damageHalf, ...damageFromHalf]);
-  //       damageFromDouble.forEach(x => damageDouble.push(x));
-  //       damageFromHalf.forEach(x => damageHalf.push(x));
-  //        console.log("Internal review")
-  //        console.log(damageDouble);
-  //       // console.log(damageDouble);
-  //       // console.log(damageD);
-  //       // setDamageDouble(...damageDouble);
-  //     })
-  //   });
-  //   console.log("After fetch")
-  //   console.log(damageDouble);
-  //   // setDamageDouble(damageHalf.filter(x => !types.includes(x)));
-  //   // setDamageHalf(damageDouble.filter(x => !types.includes(x)));
-  // };
+    results.forEach(element => {
+      element.forEach(newType => {
+        weaknes.push(newType);
+      });
+    });
+
+    setweaknes([...new Set(weaknes)]);
+    
+    return weaknes;
+  }
+
+  const getPokemonDamage = (info) => {
+    return setPokemonDamage1(info);
+  }
+   
   useEffect(() => {
     setIsLoading(true);
     getPokemon(currentId);
@@ -63,8 +58,7 @@ function App() {
       .then(pokemonData => {
         setCurrentId(pokemonData.id);
         setPokemon(pokemonData);
-        // getType();
-       // getDamageInformation();
+        getPokemonDamage(pokemonData);
         setIsLoading(false);
       })
       .catch(err => console.error(err));
@@ -75,7 +69,9 @@ function App() {
       <header className="App-header">
         {
           isLoading ? (
-            <></>
+            <>
+              <h1>Loading.....</h1>
+            </>
           ) : (
           <div>
               {/* Head container */ }
@@ -92,14 +88,13 @@ function App() {
                 <button onClick = {()=> getPokemon(currentId-1)}>{'<'}</button>
               </div>
               <div>
-                <MediaCard  pokemonInfo= {pokemon} />
+                <MediaCard  pokemonInfo= {pokemon} weaknessess={weaknes}/>
               </div>
               <div style={{marginLeft:'-23px', zIndex:1, display:'flex', alignItems:'center'}}>
-                <button onClick={()=> getPokemon(currentId +1)}>{'>'}</button>
+                <button onClick={()=> getPokemon(currentId + 1)}>{'>'}</button>
               </div>        
             </div> 
-              
-            </div>
+          </div>
           )
         }
       </header >

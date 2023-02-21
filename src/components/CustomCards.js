@@ -5,8 +5,10 @@ import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
 import { Types } from './Types';
 
-export default function MediaCard({pokemonInfo}) {
+export default function MediaCard({pokemonInfo, weaknessess}) {
   
+  // console.log(pokemonInfo);
+  // const [weaknes, setweaknes] = useState([]);
   const getImage=(info)=>{
     return info.sprites.other['official-artwork'].front_default
   };
@@ -21,7 +23,6 @@ export default function MediaCard({pokemonInfo}) {
     return [];
   };
 
-
   const getStatsInfo = (pokemonInfo1)=>{
     let label1 = [];
     let stats1 = [];
@@ -32,7 +33,7 @@ export default function MediaCard({pokemonInfo}) {
     return [label1, stats1];
 
   }
-   
+ 
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
       <CardHeader
@@ -62,24 +63,32 @@ export default function MediaCard({pokemonInfo}) {
       /> 
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Stats
            <BarChart inputData={getStatsInfo(pokemonInfo)}/>
         </Typography>
         <Typography variant="body2" color="text.secondary">
         </Typography>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h3" component="div">
           Info
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
           WEIGHT: {pokemonInfo.weight}
         </Typography>
-        <Typography gutterBottom variant="h5" component="div">
-          Weaknessess
+        <Typography gutterBottom variant="h3" component="div">
+          WEAKNESSESS
         </Typography>
-        <Typography gutterBottom variant="h5" component="div">
+          <div>
+            {
+              weaknessess.map(x => (
+                <div>
+                  <h5>{x}</h5>
+                </div>
+              ))
+            }
+          </div>
+        <Typography gutterBottom variant="h3" component="div">
           ABILITIES:
-          <Abilities pokemonInfo={pokemonInfo} />
         </Typography>
+        <Abilities pokemonInfo={pokemonInfo} />
       </CardContent>
       
     </Card>
