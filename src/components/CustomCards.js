@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
 import { Types } from './Types';
+import { Weaknessess } from './Weaknessess';
 
 export default function MediaCard({pokemonInfo, weaknessess}) {
   
@@ -73,18 +74,7 @@ export default function MediaCard({pokemonInfo, weaknessess}) {
         <Typography gutterBottom variant="h5" component="div">
           WEIGHT: {pokemonInfo.weight}
         </Typography>
-        <Typography gutterBottom variant="h3" component="div">
-          WEAKNESSESS
-        </Typography>
-          <div>
-            {
-              weaknessess.map(x => (
-                <div>
-                  <h5>{x}</h5>
-                </div>
-              ))
-            }
-          </div>
+        <Weaknessess weaknesssess={weaknessess}/>
         <Typography gutterBottom variant="h3" component="div">
           ABILITIES:
         </Typography>
