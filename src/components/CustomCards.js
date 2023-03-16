@@ -6,6 +6,7 @@ import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, 
 import { Types } from './Types';
 import { Weaknessess } from './Weaknessess';
 
+
 export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
   
   // console.log(pokemonInfo);
@@ -38,6 +39,7 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
   // }
  
   return (
+    // <div className= {data.Theme}>
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
       <CardHeader
         avatar={
@@ -52,6 +54,7 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
           <Types info = {getTypes(pokemonInfo)}/>
         }
       />
+      
       <CardMedia
         sx={{
           minHeight: '300px',
@@ -84,5 +87,7 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
       </CardContent>
       
     </Card>
+
+    // </div>
   );
 }
