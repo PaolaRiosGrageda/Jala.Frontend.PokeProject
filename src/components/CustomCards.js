@@ -1,16 +1,19 @@
 import * as React from 'react';
 import {BarChart} from './BarChart';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import {Abilities}   from './Abilities';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material';
 import { Types } from './Types';
 import { Weaknessess } from './Weaknessess';
+import  ThemeContext  from './context/ThemeContext';
+
 
 
 export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
   
   // console.log(pokemonInfo);
   // const [weaknes, setweaknes] = useState([]);
+  const data = useContext(ThemeContext);
   const getImage=(info)=>{
     return info.sprites.other['official-artwork'].front_default
   };
@@ -39,8 +42,8 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
   // }
  
   return (
-    // <div className= {data.Theme}>
-    <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
+     <div className= {data.Theme}>
+    <Card sx={{ maxWidth: 345, backgroundColor: 'dark'}}>
       <CardHeader
         avatar={
           <Avatar sx={{bgcolor: 'white', boxShadow:5, padding:'5px', margin: '2px'}} 
@@ -88,6 +91,6 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
       
     </Card>
 
-    // </div>
+     </div>
   );
 }
