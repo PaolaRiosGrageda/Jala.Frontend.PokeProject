@@ -3,7 +3,7 @@ import '../styles/PokemonCard.css';
 import { useState, useEffect, useContext } from 'react';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography} from '@mui/material';
 import MediaCard from './CustomCards';
-
+import { NavBar } from './UI/NavBar';
 
 function PokemonCard() {
   const pokeApiDomain = `https://pokeapi.co/api/v2/pokemon/`;
@@ -80,6 +80,7 @@ function PokemonCard() {
   return (
     <div className="App">
       <header className="App-header">
+      <NavBar>hola </NavBar>
         {
           isLoading ? (
             <>

@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import ThemeContext from "./context/ThemeContext";
+import {NavBar} from "./UI/NavBar";
+import DrawerAppBar from "./UI/DrawerAppBar";
 
 
 function SignInComponent(props) {
@@ -72,6 +74,8 @@ function SignInComponent(props) {
 
     return (
         <div className= {data.theme}>
+            {/* <NavBar>hola </NavBar> */}
+            <DrawerAppBar>hooolllaaa</DrawerAppBar>
             <title>{"Sign In"}</title>
             <form onSubmit={handleSubmit}>
                 <label>Email: </label>
