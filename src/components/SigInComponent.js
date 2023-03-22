@@ -5,6 +5,9 @@ import ThemeContext from "./context/ThemeContext";
 import {NavBar} from "./UI/NavBar";
 import DrawerAppBar from "./UI/DrawerAppBar";
 
+import Switch from '@mui/material/Switch';
+
+
 
 function SignInComponent(props) {
     const [email, setEmail] = useState("");
@@ -74,6 +77,7 @@ function SignInComponent(props) {
 
     return (
         <div className= {data.theme}>
+        {/* <div> */}
             {/* <NavBar>hola </NavBar> */}
             <DrawerAppBar>hooolllaaa</DrawerAppBar>
             <title>{"Sign In"}</title>
@@ -102,11 +106,11 @@ function SignInComponent(props) {
                 <br></br>
                 <input type="submit" value="Submit" />
             </form>
-            <input type="radio" name="theme" onClick={data.handleTheme} id="light" value="light" />
-            <label htmlFor='light'>Light</label>
-            <input type="radio" name="theme" onClick={data.handleTheme} id="dark" value="dark" />
-            <label htmlFor='dark'>Dark</label>
+           
 
+           
+            <Switch name= "theme" onChange={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/>
+          
         </div>
     )
 }
