@@ -109,7 +109,7 @@ function SignInComponent(props) {
            
 
            
-            <Switch name= "theme" onChange={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/>
+            <Switch name= "theme" onClick={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/>
           
         </div>
     )

@@ -4,6 +4,9 @@ import { useState, useEffect, useContext } from 'react';
 import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, Button, Typography} from '@mui/material';
 import MediaCard from './CustomCards';
 import { NavBar } from './UI/NavBar';
+import DrawerAppBar from "./UI/DrawerAppBar";
+import ThemeContext from "./context/ThemeContext";
+
 
 function PokemonCard() {
   const pokeApiDomain = `https://pokeapi.co/api/v2/pokemon/`;
@@ -12,6 +15,7 @@ function PokemonCard() {
   const [isLoading, setIsLoading] = useState(false);
   const [weaknes, setweaknes] = useState([]);
   const [statsInfo, setStatsInfo] = useState([]);
+  const data = useContext(ThemeContext);
 
 
   const getPokemon = (id) => {
@@ -80,7 +84,9 @@ function PokemonCard() {
   return (
     <div className="App">
       <header className="App-header">
-      <NavBar>hola </NavBar>
+      <DrawerAppBar>hooolllaaa</DrawerAppBar>
+      <div className= {data.theme}>
+      {/* <NavBar>hola </NavBar> */}
         {
           isLoading ? (
             <>
@@ -111,6 +117,7 @@ function PokemonCard() {
           </div>
           )
         }
+        </div>
       </header >
     </div >
   );

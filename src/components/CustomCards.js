@@ -43,7 +43,7 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
  
   return (
      <div className= {data.Theme}>
-    <Card sx={{ maxWidth: 345, backgroundColor: 'dark'}}>
+    <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
       <CardHeader
         avatar={
           <Avatar sx={{bgcolor: 'white', boxShadow:5, padding:'5px', margin: '2px'}} 
