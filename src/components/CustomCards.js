@@ -6,6 +6,7 @@ import{Card,Avatar,IconButton, CardHeader, CardActions, CardContent, CardMedia, 
 import { Types } from './Types';
 import { Weaknessess } from './Weaknessess';
 import  ThemeContext  from './context/ThemeContext';
+import  StarBorderIcon  from '@mui/icons-material/StarBorder';
 
 
 
@@ -51,10 +52,18 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
                   src={getLogo(pokemonInfo)}>
           </Avatar>
         }
+      
         titleTypographyProps= {{variant:'h4', align:'center'}}
         title={pokemonInfo.name}
         subheader= {
           <Types info = {getTypes(pokemonInfo)}/>
+        }
+        action = {
+          <IconButton>
+            <StarBorderIcon>
+
+            </StarBorderIcon>
+          </IconButton>
         }
       />
       
