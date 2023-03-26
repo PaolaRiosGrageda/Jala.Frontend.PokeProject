@@ -7,6 +7,7 @@ import { Types } from './Types';
 import { Weaknessess } from './Weaknessess';
 import  ThemeContext  from './context/ThemeContext';
 import  StarBorderIcon  from '@mui/icons-material/StarBorder';
+import { positions } from '@mui/system';
 
 
 
@@ -41,7 +42,12 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
   //   return [label1, stats1];
 
   // }
- 
+
+  // handlePao = (event) => {
+  //   console.log("Testing from HandlePAo");
+  //   console.log(event);
+  // };
+
   return (
      <div className= {data.Theme}>
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
@@ -60,8 +66,21 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
         }
         action = {
           <IconButton>
-            <StarBorderIcon>
-
+            <StarBorderIcon 
+              size='large'
+              sx={{
+                color: 'white',
+                ':hover': {backgroundColor: 'red', opacity:0.9}
+              }}
+              //TO-ASK: Why the following is not working? handle Pao is on line 46
+              // onClick={this.handlePao}
+              onClick={(event => {
+                console.log('Event from Start Click, pokemon id: ' + pokemonInfo.id);
+                // console.log(event);
+                
+              })}
+              
+            >
             </StarBorderIcon>
           </IconButton>
         }
