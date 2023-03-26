@@ -71,6 +71,11 @@ function SignInComponent(props) {
             e.preventDefault();
         } else {
             //alert(JSON.stringify({email: email, password: password, rememberMe: rememberMe}));
+            const res= {token:"123abc$", expiresIn:60}
+            localStorage.setItem("authenticationInfo", JSON.stringify(res));
+            var authentication = localStorage.getItem("authenticationInfo");
+            // "userConfig"{theme: 'dark'}
+            console.log(authentication);
             homePage();
         }
     }
