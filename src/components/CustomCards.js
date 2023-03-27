@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   
   const [favorite, setFavorite] = useState(0);
+  const [starColor1, setStarColor1] = useState({Color: "black"});
   const dispatch = useDispatch(); // despachar acciones
 
 
@@ -75,7 +76,7 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
             <StarBorderIcon 
               size='large'
               sx={{
-                color: 'white',
+                color: starColor1.Color,
                 ':hover': {backgroundColor: 'red', opacity:0.9}
               }}
               //TO-ASK: Why the following is not working? handle Pao is on line 46
@@ -87,6 +88,11 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
                   name: pokemonInfo.name,
                   types: pokemonInfo.types
                 }));
+                
+                if(starColor1.Color === "black")
+                  starColor1.Color = "yellow";
+                else
+                  starColor1.Color = "black";
               })}
               
             >

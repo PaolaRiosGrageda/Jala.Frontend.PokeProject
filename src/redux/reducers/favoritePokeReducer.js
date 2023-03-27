@@ -6,7 +6,6 @@ export default function favoritePokeReducer(state = [], action){
 
             for (let i = 0; i < state.length; i++) {
                 if(state[i].pokemonId === action.favorite.pokemonId){
-                    debugger;
                     deleted = true;
                     break;
                 }
