@@ -12,6 +12,7 @@ import { positions } from '@mui/system';
 import { connect, useDispatch } from 'react-redux';
 import * as favoritePokeActions from '../redux/actions/favoritePokeActions';
 import PropTypes from 'prop-types';
+import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 
 function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   
@@ -37,6 +38,38 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
     return [];
   };
 
+  const columns = [
+    {field: "col1", headerName: "Id", width: 30},
+    {field: "col2", headerName: "Name", width: 100},
+    // {field: "col3", headerName: "Types", width: 300},
+  ];
+
+  const rows = [
+    { id: 1, col1: '123', col2: 'Poke1' },
+    { id: 2, col1: '456', col2: 'Poke 2' },
+    { id: 3, col2: '789', col2: 'Charmander' },
+  ];
+
+  rows.push( { id: 4, col1: 'Jose', col2: 'Josemon' },)
+  // console.log(favorites);
+  
+  var id = 5;
+
+  // array.forEach(element => {
+    
+  // });
+  // console.log("El size de los pokemon es: " + favorites.favorite.length);
+  for (var i = 0; i < favorites.favorite.length; i++){
+    
+    console.log("pusheando " +favorites.favorite[i].pokemonId + "   -- " + favorites.favorite[i].name );
+    rows.push( { id: 4, col1: favorites.favorite[i].pokemonId, col2: favorites.favorite[i].name })
+    id = id+1;
+  }
+
+    // rows.push({ id: id, col1: x.pokemonId, col2: x.name});
+    // id = id+1;
+  // });
+
   // const getStatsInfo = (pokemonInfo1)=>{
   //   let label1 = [];
   //   let stats1 = [];
@@ -56,7 +89,8 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   // };
 
   return (
-     <div className= {data.Theme}>
+    <div className= {data.Theme}>
+      
     <Card sx={{ maxWidth: 345, backgroundColor: 'green'}}>
       <CardHeader
         avatar={
@@ -133,6 +167,24 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
       </CardContent>
       
     </Card>
+    <div>
+      <DataGrid 
+          
+          rows={rows} 
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 20,
+              },
+            },
+          }}
+          pageSizeOptions={[5]}
+          checkboxSelection
+          disableRowSelectionOnClick
+          autoHeight
+        />
+    </div>
 
      </div>
   );
