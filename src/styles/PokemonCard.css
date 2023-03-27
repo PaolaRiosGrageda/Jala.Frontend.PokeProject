@@ -14,7 +14,7 @@
 }*/
 
 .App-header {
-  background-color: #282c34;
+  background-color: #42495e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+.App-footer {
+  height:40px;
+  /* line-height:50px; */
+  bottom:0;
+  left:0;
+  width:100%;
+  float: left;
+  margin-top: 10px;
+  position:absolute;
+  background-color: dodgerblue; 
+  /* padding: 10px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* backgroundColor: "primary.main" */
+  /* paddingTop: "1rem", */
+  font-size: 0.9em;
+  text-align: left;
 }

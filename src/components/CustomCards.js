@@ -13,7 +13,6 @@ import { connect, useDispatch } from 'react-redux';
 import * as favoritePokeActions from '../redux/actions/favoritePokeActions';
 import PropTypes from 'prop-types';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-
 function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   
   const [favorite, setFavorite] = useState(0);
@@ -185,8 +184,10 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
           autoHeight
         />
     </div>
-
-     </div>
+   
+       
+  </div>
+  
   );
 }
 

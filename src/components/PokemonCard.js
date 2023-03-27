@@ -6,6 +6,7 @@ import MediaCard from './CustomCards';
 import { NavBar } from './UI/NavBar';
 import DrawerAppBar from "./UI/DrawerAppBar";
 import ThemeContext from "./context/ThemeContext";
+import { Footer } from './Footer';
 
 
 function PokemonCard() {
@@ -119,6 +120,9 @@ function PokemonCard() {
         }
         </div>
       </header >
+      <div>
+        <Footer></Footer>
+      </div>
     </div >
   );
 }

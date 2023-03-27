@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import ThemeContext from "./context/ThemeContext";
 import {NavBar} from "./UI/NavBar";
 import DrawerAppBar from "./UI/DrawerAppBar";
-
+import '../styles/PokemonCard.css';
 import Switch from '@mui/material/Switch';
-
+import { Footer } from "./Footer";
 
 
 function SignInComponent(props) {
@@ -83,7 +83,7 @@ function SignInComponent(props) {
     return (
         <div className= {data.theme}>
         {/* <div> */}
-            {/* <NavBar>hola </NavBar> */}
+           {/* <header className="App-header">  */}
             <DrawerAppBar>hooolllaaa</DrawerAppBar>
             <title>{"Sign In"}</title>
             <form onSubmit={handleSubmit}>
@@ -111,12 +111,13 @@ function SignInComponent(props) {
                 <br></br>
                 <input type="submit" value="Submit" />
             </form>
-           
-
-           
             <Switch name= "theme" onClick={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/>
-          
+             {/* </header>  */}
+            <footer className="App-footer"> 
+                <Footer/>
+            </footer>   
         </div>
+        
     )
 }
 
