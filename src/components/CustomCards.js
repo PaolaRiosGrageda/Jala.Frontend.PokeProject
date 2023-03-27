@@ -9,10 +9,16 @@ import  ThemeContext  from './context/ThemeContext';
 import  StarBorderIcon  from '@mui/icons-material/StarBorder';
 import { positions } from '@mui/system';
 
+import { connect, useDispatch } from 'react-redux';
+import * as favoritePokeActions from '../redux/actions/favoritePokeActions';
+import PropTypes from 'prop-types';
 
-
-export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
+function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   
+  const [favorite, setFavorite] = useState(0);
+  const dispatch = useDispatch(); // despachar acciones
+
+
   // console.log(pokemonInfo);
   // const [weaknes, setweaknes] = useState([]);
   const data = useContext(ThemeContext);
@@ -75,9 +81,12 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
               //TO-ASK: Why the following is not working? handle Pao is on line 46
               // onClick={this.handlePao}
               onClick={(event => {
-                console.log('Event from Start Click, pokemon id: ' + pokemonInfo.id);
-                // console.log(event);
                 
+                dispatch(favoritePokeActions.addFavoritePokemon({
+                  pokemonId: pokemonInfo.id,
+                  name: pokemonInfo.name,
+                  types: pokemonInfo.types
+                }));
               })}
               
             >
@@ -122,3 +131,15 @@ export default function MediaCard({pokemonInfo, weaknessess, statsInfo}) {
      </div>
   );
 }
+
+MediaCard.propTypes = {
+  favorites: PropTypes.array
+}
+
+function mapStateToProps(state, ownProps) {
+  return { 
+    favorites: state
+  }
+}
+
+export default connect(mapStateToProps)(MediaCard);
