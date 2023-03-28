@@ -8,11 +8,12 @@ import { Weaknessess } from './Weaknessess';
 import  ThemeContext  from './context/ThemeContext';
 import  StarBorderIcon  from '@mui/icons-material/StarBorder';
 import { positions } from '@mui/system';
-
 import { connect, useDispatch } from 'react-redux';
 import * as favoritePokeActions from '../redux/actions/favoritePokeActions';
 import PropTypes from 'prop-types';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import Favorites from './Favorites';
+
 function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   
   const [favorite, setFavorite] = useState(0);
@@ -109,20 +110,26 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
                 ':hover': {backgroundColor: 'red', opacity:0.9}
               }}
               //TO-ASK: Why the following is not working? handle Pao is on line 46
-              // onClick={this.handlePao}
+              //  onClick={handlePao
+              //  }
+              
               onClick={(event => {
-                
                 dispatch(favoritePokeActions.addFavoritePokemon({
                   pokemonId: pokemonInfo.id,
                   name: pokemonInfo.name,
                   types: pokemonInfo.types
                 }));
-                
+                const newPokemon={
+                  pokemonId: pokemonInfo.id,
+                  name: pokemonInfo.name,
+                  types: pokemonInfo.types
+                }
                 
                 if(starColor1.Color === "black")
                   starColor1.Color = "yellow";
                 else
                   starColor1.Color = "black";
+                Favorites(newPokemon);
               })}
               
             >

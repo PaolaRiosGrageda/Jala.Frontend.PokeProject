@@ -25,10 +25,10 @@ const drawerWidth = 240;
 const navItems = ['Pokedex', 'Favorites', 'Login'];
 const navLinks = [
   {
-    title: 'Pokedex', path:'/pokemonCard '
+    title: 'Pokedex', path:'/home '
   },
   {
-    title: 'Favorites', path:''
+    title: 'Favorites', path:'/Favorites'
   },
   {
     title: 'Login', path:'/login'

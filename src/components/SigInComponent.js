@@ -17,7 +17,7 @@ function SignInComponent(props) {
     const [passwordErrorS, setPasswordError] = useState("");
 
     // const activeStyle = {color: "#F15B2A" };
-     const data = useContext(ThemeContext);
+    const data = useContext(ThemeContext);
     const navigate = useNavigate();
 
     const homePage = () => {
