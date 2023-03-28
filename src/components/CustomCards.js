@@ -40,7 +40,7 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   const columns = [
     {field: "col1", headerName: "Id", width: 30},
     {field: "col2", headerName: "Name", width: 100},
-    // {field: "col3", headerName: "Types", width: 300},
+   // {field: "col3", headerName: "Types", width: 300}
   ];
 
   const rows = [
@@ -50,21 +50,20 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   ];
 
   var id = 5;
+  const newFavorites = [];
+  for (var i = 0; i < favorites.favorite.length; i++){
+    rows.push( {id:i, col1: favorites.favorite[i].pokemonId, col2: favorites.favorite[i].name })
+    
+  }
 
+
+  
   // array.forEach(element => {
     
   // });
   // console.log("El size de los pokemon es: " + favorites.favorite.length);
-  for (var i = 0; i < favorites.favorite.length; i++){
-    
-    console.log("pusheando " +favorites.favorite[i].pokemonId + "   -- " + favorites.favorite[i].name );
-    rows.push( { id: 4, col1: favorites.favorite[i].pokemonId, col2: favorites.favorite[i].name })
-    id = id+1;
-  }
-
-    // rows.push({ id: id, col1: x.pokemonId, col2: x.name});
-    // id = id+1;
-  // });
+  
+   
 
   // const getStatsInfo = (pokemonInfo1)=>{
   //   let label1 = [];
@@ -118,6 +117,7 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
                   name: pokemonInfo.name,
                   types: pokemonInfo.types
                 }));
+                
                 
                 if(starColor1.Color === "black")
                   starColor1.Color = "yellow";
