@@ -10,26 +10,29 @@ import ThemeContext from "./context/ThemeContext";
 
 
 
-export default function Favorites (favorites) {
+function Favorites (favorites) {
     const data = useContext(ThemeContext);
     const [favorite, setFavorite] = useState(0);
     const dispatch = useDispatch(); // despachar acciones
     const columns = [
         {field: "col1", headerName: "Id", width: 30},
         {field: "col2", headerName: "Name", width: 100},
-       // {field: "col3", headerName: "Types", width: 300}
+        //{field: "col3", headerName: "Types", width: 300}
     ];
     
     const rows = [
-          { id: 1, col1: '123', col2: 'Poke1' },
-          { id: 2, col1: '456', col2: 'Poke 2' },
-          { id: 3, col2: '789', col2: 'Charmander' },
+          // { id: 1, col1: '123', col2: 'Poke1' },
+          // { id: 2, col1: '456', col2: 'Poke 2' },
+          // { id: 3, col2: '789', col2: 'Charmander' },
     ];
-    console.log("this is the ",{favorites});
-    // for (var i = 0; i < favorites.favorite.length; i++){
-    //     rows.push( {id:i, col1: favorites.favorite[i].pokemonId, col2: favorites.favorite[i].name })
+   
+   
+    for (var i = 0; i < favorites.favorites.favorite.length; i++){
+        rows.push( {id:i, 
+                  col1: favorites.favorites.favorite[i].pokemonId, 
+                  col2: favorites.favorites.favorite[i].name })
         
-    // }
+    }
     // handlePao = (event) => {
     //     dispatch(favoritePokeActions.addFavoritePokemon({
     //         pokemonId: pokemonInfo.id,
@@ -63,13 +66,13 @@ export default function Favorites (favorites) {
     </div>
   )
 }
-// Favorites.propTypes = {
-//     favorites: PropTypes.array
-// }
-// function mapStateToProps(state,ownProps){
-//     return{
-//         favorites:state
-//     }
-// }
+Favorites.propTypes = {
+    favorites: PropTypes.array
+}
+function mapStateToProps(state,ownProps){
+    return{
+        favorites:state
+    }
+}
 
-// export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps)(Favorites);
