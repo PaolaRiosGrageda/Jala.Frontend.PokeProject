@@ -5,7 +5,7 @@ import ThemeContext from "./context/ThemeContext";
 import {NavBar} from "./UI/NavBar";
 import DrawerAppBar from "./UI/DrawerAppBar";
 import '../styles/PokemonCard.css';
-import Switch from '@mui/material/Switch';
+// import Switch from '@mui/material/Switch';
 import { Footer } from "./Footer";
 
 
@@ -17,7 +17,7 @@ function SignInComponent(props) {
     const [passwordErrorS, setPasswordError] = useState("");
 
     // const activeStyle = {color: "#F15B2A" };
-    const data = useContext(ThemeContext);
+     const data = useContext(ThemeContext);
     const navigate = useNavigate();
 
     const homePage = () => {
@@ -111,7 +111,7 @@ function SignInComponent(props) {
                 <br></br>
                 <input type="submit" value="Submit" />
             </form>
-            <Switch name= "theme" onClick={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/>
+            {/* <Switch name= "theme" onClick={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/> */}
              {/* </header>  */}
             <footer className="App-footer"> 
                 <Footer/>

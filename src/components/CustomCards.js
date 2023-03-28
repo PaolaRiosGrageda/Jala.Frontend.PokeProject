@@ -44,14 +44,11 @@ function MediaCard({pokemonInfo, weaknessess, statsInfo, favorites}) {
   ];
 
   const rows = [
-    { id: 1, col1: '123', col2: 'Poke1' },
-    { id: 2, col1: '456', col2: 'Poke 2' },
-    { id: 3, col2: '789', col2: 'Charmander' },
+    // { id: 1, col1: '123', col2: 'Poke1' },
+    // { id: 2, col1: '456', col2: 'Poke 2' },
+    // { id: 3, col2: '789', col2: 'Charmander' },
   ];
 
-  rows.push( { id: 4, col1: 'Jose', col2: 'Josemon' },)
-  // console.log(favorites);
-  
   var id = 5;
 
   // array.forEach(element => {

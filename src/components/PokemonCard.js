@@ -120,9 +120,9 @@ function PokemonCard() {
         }
         </div>
       </header >
-      <div>
-        <Footer></Footer>
-      </div>
+      {/* <footer className="App-footer">  */}
+          <Footer/>
+      {/* </footer>  */}
     </div >
   );
 }

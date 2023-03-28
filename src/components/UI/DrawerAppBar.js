@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import ThemeContext from "../context/ThemeContext";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,9 +16,21 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Pokedex', 'Favorites', 'Login'];
+const navLinks = [
+  {
+    title: 'Pokedex', path:'/home '
+  },
+  {
+    title: 'Favorites', path:''
+  },
+  {
+    title: 'Login', path:''
+  }
+];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -25,6 +39,7 @@ function DrawerAppBar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  const data = useContext(ThemeContext);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -37,6 +52,7 @@ function DrawerAppBar(props) {
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
+              {/* <ListItemLink href={item.href}/> */}
             </ListItemButton>
           </ListItem>
         ))}
@@ -74,6 +90,8 @@ function DrawerAppBar(props) {
               </Button>
             ))}
           </Box>
+          <Switch name= "theme" onClick={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/>
+
         </Toolbar>
       </AppBar>
       <Box component="nav">

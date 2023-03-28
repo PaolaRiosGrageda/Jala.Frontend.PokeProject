@@ -37,7 +37,7 @@
   }
 }
 .App-footer {
-  height:40px;
+  height:30px;
   /* line-height:50px; */
   bottom:0;
   left:0;
@@ -45,7 +45,7 @@
   float: left;
   margin-top: 10px;
   position:absolute;
-  background-color: dodgerblue; 
+  /* background-color: dodgerblue;  */
   /* padding: 10px; */
   padding-top: 10px;
   padding-bottom: 10px;

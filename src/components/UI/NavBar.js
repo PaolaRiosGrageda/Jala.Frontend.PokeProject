@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import { LogoutOutlined, MenuOutlined } from '@mui/icons-material';
+import Switch from '@mui/material/Switch';
 
 
 export const NavBar = ({ drawerWidth = 200 }) => {
+    const data = useContext(ThemeContext);
     
   return (
     
@@ -29,8 +33,10 @@ export const NavBar = ({ drawerWidth = 200 }) => {
                     <LogoutOutlined />
                 </IconButton> 
             </Grid>
+            <Switch name= "theme" onClick={data.handleTheme} id= "dark" value={data.theme==="dark" ? "light" : "dark"}/>
 
         </Toolbar>
+
     </AppBar>
   )
 }
