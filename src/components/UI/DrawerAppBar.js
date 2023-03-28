@@ -17,18 +17,21 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
+// import ListItemLink from '@mui/material/ListItemLink';
+import { Link } from "react-router-dom";
+
 
 const drawerWidth = 240;
 const navItems = ['Pokedex', 'Favorites', 'Login'];
 const navLinks = [
   {
-    title: 'Pokedex', path:'/home '
+    title: 'Pokedex', path:'/pokemonCard '
   },
   {
     title: 'Favorites', path:''
   },
   {
-    title: 'Login', path:''
+    title: 'Login', path:'/login'
   }
 ];
 
@@ -48,13 +51,11 @@ function DrawerAppBar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-              {/* <ListItemLink href={item.href}/> */}
-            </ListItemButton>
-          </ListItem>
+        {navLinks.map((item) => (
+          <ListItemButton key={item.title} disablePadding component={Link} to={item.path}>
+            {item.title} 
+            
+          </ListItemButton>
         ))}
       </List>
     </Box>
@@ -84,9 +85,9 @@ function DrawerAppBar(props) {
             PokemonDex
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+            {navLinks.map((item) => (
+              <Button key={item.title} sx={{ color: '#fff' }} component={Link} to={item.path}>
+                {item.title}
               </Button>
             ))}
           </Box>

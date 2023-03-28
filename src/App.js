@@ -14,7 +14,9 @@ function App() {
          <ThemeProvider> 
           <Routes>
             <Route path='/' element= {<SignInComponent/>}></Route>
-            <Route path='/home' element={<PokemonCard/>}></Route>
+            <Route path='/Login' element= {<SignInComponent/>}></Route>
+
+            <Route path='/pokemonCard' element={<PokemonCard/>}></Route>
             <Route path='*' element={<PageNotFoundComponent/>}></Route>
 
           </Routes>
